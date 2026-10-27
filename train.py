@@ -652,7 +652,7 @@ def show_stats(args):
             print("  " + ", ".join(f"{k}={v}" for k, v in s.items()))
 
 
-def main():
+def build_parser():
     parser = argparse.ArgumentParser(description="Blindfold chess drills",
                                      formatter_class=argparse.RawDescriptionHelpFormatter, epilog=__doc__)
     sub = parser.add_subparsers(dest="mode", required=True)
@@ -700,8 +700,11 @@ def main():
 
     p = sub.add_parser("stats", help="show your progress")
     p.set_defaults(func=show_stats)
+    return parser
 
-    args = parser.parse_args()
+
+def main():
+    args = build_parser().parse_args()
     args.func(args)
 
 

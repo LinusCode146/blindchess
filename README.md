@@ -17,6 +17,16 @@ python3 fetch_data.py     # puzzles + openings into data/ (streams ~250 MB, keep
 [lichess-org/chess-openings](https://github.com/lichess-org/chess-openings) (both public domain).
 Only the tactics, memory and opening drills need this data.
 
+## Start menu
+
+```bash
+python3 start.py
+```
+
+Pick a game or drill from the menu and answer a few questions for its settings (Enter keeps the
+default, `b` goes back). When a game or drill ends you are back in the menu. Everything below can
+also be started directly from the command line.
+
 ## Play a game
 
 ```bash

@@ -13,15 +13,17 @@ import chess
 from common import open_engine, play_game
 
 
-def main():
+def build_parser():
     parser = argparse.ArgumentParser(description="Blindfold chess against Stockfish")
     parser.add_argument("-l", "--level", type=int, default=3, choices=range(0, 21), metavar="0-20",
                         help="Stockfish skill level (default 3)")
     parser.add_argument("-e", "--elo", type=int, help="limit strength to an Elo (1320-3190) instead of --level")
     parser.add_argument("-c", "--color", choices=["white", "black", "random"], default="white")
     parser.add_argument("-t", "--think", type=float, default=0.3, help="engine seconds per move (default 0.3)")
-    args = parser.parse_args()
+    return parser
 
+
+def run(args):
     if args.color == "random":
         args.color = random.choice(["white", "black"])
     player = chess.WHITE if args.color == "white" else chess.BLACK
@@ -35,6 +37,10 @@ def main():
         engine.quit()
     if board.move_stack:
         print(f"Peeks used: {peeks}")
+
+
+def main():
+    run(build_parser().parse_args())
 
 
 if __name__ == "__main__":
